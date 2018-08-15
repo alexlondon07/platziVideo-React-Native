@@ -4,6 +4,7 @@ import{
     Text
 } from 'react-native';
 
+import Layout from '../components/suggestion-list-layout';
 
 class SuggestionList extends Component{
     render() {
@@ -18,11 +19,15 @@ class SuggestionList extends Component{
             }
         ]
         return(
+            <Layout
+                title = "Recomendado para ti"
+            >
             <FlatList
             data ={ list }
             renderItem={ ({ item }) => <Text>{ item.title }</Text> }
             />
-        );
+            </Layout>
+        )
     }
 }
 export default SuggestionList;
