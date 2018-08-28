@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 function Suggestion(props){
+    let genre = (props.genres) ? props.genres[0] : "No category"
     return (
         <View style={ styles.container }>
             <View styles={ styles.left }>
@@ -15,7 +16,7 @@ function Suggestion(props){
                     source ={{ uri: props.medium_cover_image }}
                 />
                 <View style={ styles.genre }>
-                    <Text style={ styles.genreText }>{ props.genres[0] }</Text>
+                    <Text style={ styles.genreText }>{ genre }</Text>
                 </View>
             </View>
             <View style={ styles.right }>
