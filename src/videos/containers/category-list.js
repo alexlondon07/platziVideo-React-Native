@@ -6,21 +6,23 @@ import {
 
 import Empty from '../components/empty';
 import Separator from '../components/vertical-separator';
-import Suggestion from '../components/suggestion';
+import Layout from '../components/category-list-layout';
+import Category from '../components/category';
 
 class CategoryList extends Component {
     renderEmpty = () => <Empty text ="No hay categorias" />
     itemSeparator = () => <Separator/>
     renderItem = ( {item} ) => {
         return(
-        <Suggestion {...item } />
+        <Category {...item } />
         )
     }
     keyExtractor = (item) => item.id.toString();
 
     render() {
         return (
-        <View>
+        <Layout
+            title ="Categorias">
             <FlatList
                 horizontal
                 keyExtractor = { this.keyExtractor }
@@ -29,7 +31,7 @@ class CategoryList extends Component {
                 ListEmptyComponent = { this.renderEmpty } 
                 ItemSeparatorComponent = { this.itemSeparator }
             />
-        </View>
+        </Layout>
         )
     }
 }
