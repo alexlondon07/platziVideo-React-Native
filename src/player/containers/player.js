@@ -44,7 +44,8 @@ export default class Player extends Component {
                     logo={logo}
                     placeholder={placeholder}
                     theme={theme}
-                    rotateToFullScreen
+                    rotateToFullScreen={true}
+                    lockPortraitOnFsExit={true}
                 />
                 </ScrollView>
             }

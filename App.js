@@ -10,40 +10,52 @@ import SuggestionList from './src/videos/containers/suggestion-list';
 import API from './utils/api';
 import CategoryList from './src/videos/containers/category-list';
 import Player from './src/player/containers/player';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from './store';
 
 type Props = {};
 export default class App extends Component<Props> {
   state = {
-    suggestionList: [],
-    categoryList: [],
+    //suggestionList: [],
+    //categoryList: [],
   }
   async componentDidMount(){
 
-    const movies = await API.getSuggestions(10);
-    const categories = await API.getMovies();
-
-    console.log(movies);
-    console.log(categories);
-
-    this.setState({
-      suggestionList: movies,
-      categoryList: categories,
+    const categoryList = await API.getMovies();
+    store.dispatch({
+      type: 'SET_CATEGORY_LIST',
+      payload: {
+        categoryList
+      }
     })
+    const suggestionList = await API.getSuggestion(10);
+    store.dispatch({
+      type: 'SET_SEGGESTION_LIST',
+      payload: {
+        suggestionList
+      }
+    })
+    
   }
   render() {
     return (
-      <Home>
-        <Header/>
-        <Player/>
-        <Text>Buscador</Text>
-        <Text>Categorías</Text>
-        <CategoryList
-          list = { this.state.categoryList }
-        />
-        <SuggestionList
-          list = { this.state.suggestionList }
-        />
-      </Home>
+      <Provider 
+         store = { store } 
+      >
+        <PersistGate
+        loading={ <Text> Cargando </Text>} 
+        persistor={persistor}
+        >
+          <Home>
+              <Header/>
+              <Player/>
+              <Text>Buscador</Text>
+              <CategoryList/>
+              <SuggestionList/>
+            </Home>
+        </PersistGate>
+      </Provider>
     );
   }
 }

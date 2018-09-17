@@ -8,18 +8,21 @@ import Layout from '../components/suggestion-list-layout';
 import Empty from '../components/empty';
 import Separator from '../components/vertical-separator';
 import Suggestion from '../components/suggestion';
+import { connect } from 'react-redux';
 
+function mapStateToProps(state) {
+    return {
+      list: state.suggestionList
+    }
+  }
 class SuggestionList extends Component {
-    renderEmpty = () => <Empty text ="No hay suegerencias" />
-    
+    renderEmpty = () => <Empty text ="No hay sugerencias" />
     itemSeparator = () => <Separator/>
-    
     renderItem = ( {item} ) => {
         return(
         <Suggestion {...item } />
         )
     }
-
     keyExtractor = (item) => item.id.toString();
     
     render() {
@@ -38,4 +41,4 @@ class SuggestionList extends Component {
         )
     }
 }
-export default SuggestionList;
+export default connect(mapStateToProps)(SuggestionList);

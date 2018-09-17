@@ -13,7 +13,7 @@ import {
                 borderTopColor: (props.color) ? props.color : '#eaeaea'
             }
             ]}>
-             <Text></Text>
+             <Text>  </Text>
          </View>
      )
  }

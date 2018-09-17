@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet , ImageBackground} from 'react-native';
 
+
 const Category = (props) => (
     <ImageBackground
         style = { styles.wrapper }
@@ -8,7 +9,7 @@ const Category = (props) => (
             uri : props.background_image
         }}
     >
-    <Text style= {styles.genres}>{ props.genres[0] }</Text>
+    <Text style= {styles.genres}>{  props.genres ? props.genres[0] : " " } </Text>
     </ImageBackground>
 );
 
