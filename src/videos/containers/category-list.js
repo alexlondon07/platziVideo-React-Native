@@ -42,5 +42,5 @@ class CategoryList extends Component {
     }
 }
 
-export default connect(mapStateToProps)(CategoryList);;
+export default connect(mapStateToProps)(CategoryList);
 
