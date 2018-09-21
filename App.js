@@ -5,9 +5,27 @@ import { store, persistor } from './store';
 
 import Loading from './src/sections/components/loading';
 import { AppLayout } from './src/app';
+import API from './utils/api';
 
 type Props = {};
 export default class App extends Component<Props> {
+
+  async componentDidMount() {
+    const categoryList = await API.getMovies();
+    store.dispatch({
+      type: 'SET_CATEGORY_LIST',
+      payload: {
+        categoryList
+      }
+    })
+    const suggestionList = await API.getSuggestion(10);
+    store.dispatch({
+      type: 'SET_SEGGESTION_LIST',
+      payload: {
+        suggestionList
+      }
+    })
+  }
   render() {
     return (
       <Provider 
